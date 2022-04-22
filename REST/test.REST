@@ -1,0 +1,20 @@
+
+@url = http://localhost:3000
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRwYXJlamEiLCJwYXNzd29yZCI6IjEyMzRhc2RmIiwiZXhwaXJlc0luIjo2MCwiaWF0IjoxNjUwNjU2NTIwfQ.73SnRg9gWB3fHtEU0Bu70jqp7-kJ9kkwe-saKtZpb-0
+
+
+GET {{url}}/
+Authorization: Bearer {{token}}
+
+###
+
+POST {{url}}/login
+Content-Type: application/json
+
+{
+    "username": "dpareja",
+    "password": "1234asdf"
+}
+
+###
