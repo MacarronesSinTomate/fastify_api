@@ -16,8 +16,7 @@ exports.login = async ( req, res ) => {
 
         const payload = {
             username,
-            password,
-            expiresIn: 60
+            password
         }
         const token = await res.jwtSign(payload);
 
