@@ -1,4 +1,4 @@
-const { login } = require('./controllers/login');
+const { login, signin } = require('./controllers/login');
 
 const fastify = require('fastify')({
     logger: true
@@ -24,7 +24,8 @@ const routes = async (fastify, options) => {
     fastify.get( '/', { onRequest: fastify.jwtVerify }, ( req, res ) => { res.code( 200 ).send( { error: false } ) } );
 
     // AUTH
-    fastify.post( '/login', login );
+    fastify.post( '/login',  login );
+    fastify.post( '/signin', signin );
 
 }
 

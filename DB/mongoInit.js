@@ -2,20 +2,20 @@ const { MongoClient } = require('mongodb');
 
 exports.mongoInit = async () => {
 
-    const client = new MongoClient( process.env.MONGO_URL );
-
     try {
+
+        const client = new MongoClient( process.env.MONGO_URL );
 
         await client.connect();
 
-        const db    = client.db( "Test_Videogames_App" );
+        const database = client.db( "Test_Videogames_App" );
     
-        const users = db.collection('users');
-        const games = db.collection('games');
+        const users = database.collection('users');
+        const games = database.collection('games');
 
-        global.users = users;
-        global.games = games;
-
+        global.mongo_users = users;
+        global.mongo_games = games;
+        
         console.log( "    ✅ Connected to mongodb: ", process.env.ENV );
 
     } catch ( err ) {

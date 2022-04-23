@@ -13,8 +13,18 @@ POST {{url}}/login
 Content-Type: application/json
 
 {
-    "username": "dpareja",
-    "password": "1234asdf"
+    "username": "Macarrones",
+    "password": "1234Asdf"
+}
+
+###
+
+POST {{url}}/signin
+Content-Type: application/json
+
+{
+    "username": "Macarrones",
+    "password": "1234Asdf"
 }
 
 ###

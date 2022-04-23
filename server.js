@@ -1,6 +1,7 @@
+require('dotenv-flow').config();
+
 const { mongoInit } = require('./DB/mongoInit');
 const fastify = require('fastify')({})
-require('dotenv-flow').config();
 
 // Registramos el router
 fastify.register( require('./router.js') );
@@ -9,6 +10,7 @@ fastify.register( require('./router.js') );
 fastify.register(require('fastify-jwt'), {
     secret: process.env.JWT_SECRET   
 })
+fastify.register(require('fastify-cors'));
 
 
 const start = async () => {
