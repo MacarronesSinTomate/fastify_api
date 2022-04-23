@@ -73,7 +73,7 @@ exports.login = async ( req, res ) => {
 
         console.log( "ERR: ", err );
 
-        res.code( 400 ).send({ 
+        res.send({ 
             error: true,
             msg: "Usuario o contraseña incorrectos"
         })
@@ -124,7 +124,7 @@ exports.signin = async ( req, res ) => {
         const check_user = await global.mongo_users.findOne({ username : username });
         if ( check_user ) {
 
-            return res.code( 400 ).send({ 
+            return res.send({ 
                 error: true,
                 msg: "El usuario ya existe"
             })    
@@ -151,7 +151,7 @@ exports.signin = async ( req, res ) => {
 
         console.log( "ERR: ", err );
 
-        res.code( 400 ).send({ 
+        res.send({ 
             error: true,
             msg: "No se ha podido realizar el registro"
         })
