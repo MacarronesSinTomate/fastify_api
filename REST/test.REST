@@ -28,3 +28,7 @@ Content-Type: application/json
 }
 
 ###
+
+GET {{url}}/getCarpetas/
+
+###

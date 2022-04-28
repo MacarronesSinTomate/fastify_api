@@ -63,10 +63,12 @@ exports.login = async ( req, res ) => {
         }
         const token = await res.jwtSign(payload);
 
+        delete usuario.password;
+
         res.send({ 
             error: false, 
-            token : token,
-            usuario: usuario
+            usuario: usuario,
+            token: token
         });
 
     } catch ( err ) {
@@ -155,6 +157,21 @@ exports.signin = async ( req, res ) => {
             error: true,
             msg: "No se ha podido realizar el registro"
         })
+
+    }
+
+}
+
+exports.verify_token = async ( req, res ) => {
+
+    try {      
+
+        await req.jwtVerify();
+        res.send({ authorization: true });
+
+    } catch ( err ) {
+        
+        res.send({ authorization: false });           
 
     }
 
