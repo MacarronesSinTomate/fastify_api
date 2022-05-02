@@ -2,19 +2,24 @@ const fs = require('fs');
 
 exports.getCarpetas = ( req, res ) => {
 
-    const { ruta } = req.query;
+    try{
 
-    console.log( "REQ: ", req );
+        const { ruta } = req.query;
 
-    let rutaCompleta = process.env.BASE_DATA_URL;
-    if ( ruta ) rutaCompleta += "/" + ruta;
+        let rutaCompleta = process.env.BASE_DATA_URL;
+        if ( rutaCompleta.charAt( rutaCompleta.length - 1 ) != "/" ) rutaCompleta += "/";
+        if ( ruta ) rutaCompleta += "/" + ruta;
+    
+        console.log( "Ruta:" , rutaCompleta );
+    
+        const carpetas = fs.readdirSync( rutaCompleta, { withFileTypes: true } );
+    
+        res.send({ error: false, rutaActual: rutaCompleta, carpetas: carpetas });
 
-    console.log( "Ruta:" , rutaCompleta );
+    } catch ( err ) {
 
-    const carpetas = fs.readdirSync( rutaCompleta, { withFileTypes: true } );
+        res.send({ error: true, msg: "Ruta no encontrada", rutaActual: rutaCompleta, carpetas: [] });
 
-    console.log( "Carpetas: ", carpetas );
-
-    res.send({ error: false, rutaActual: rutaCompleta, carpetas: carpetas });
+    }
 
 }
